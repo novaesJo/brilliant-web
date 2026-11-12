@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brilliant - Gestão de Limpeza de Tênis</title>
+    <!-- Importação da Fonte Poppins do Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="frontend/assets/logo.png">
+</head>
+<body>
+
+    <!-- ========================================================
+         NAVBAR FLUTUANTE PREMIUM DARK MODE
+         ======================================================== -->
+    <header class="app-header">
+        <div class="navbar-floating">
+            <!-- Logo Original do Sistema -->
+            <div class="brand-container" onclick="document.querySelector('[data-target=\'view-dashboard\']').click()" title="Ir para o Dashboard">
+                <img src="data:image/png;base64,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" class="navbar-logo">
+            </div>
+
+            <!-- Menu de Navegação em Formato Pill -->
+            <nav class="nav-tabs">
+                <button class="nav-tab active" data-target="view-dashboard">
+                    Dashboard
+                </button>
+                <button class="nav-tab" data-target="view-clients">
+                    Clientes
+                </button>
+                <button class="nav-tab" data-target="view-orders">
+                    Linha de Produção
+                </button>
+                <button class="nav-tab" data-target="view-calendar">
+                    Calendário &amp; Histórico
+                </button>
+                <div class="nav-theme-toggle" id="theme-toggle-btn" title="Alternar Modo Claro / Escuro">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </div>
+            </nav>
+
+            <!-- Ação Rápida de Novo Pedido -->
+            <div class="header-right-actions">
+                <span id="current-date-text" style="display: none;">--/--/----</span>
+                <button class="btn-new-order-pill" onclick="Orders.openNewOrderModal()">
+                    + Novo Pedido
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- ========================================================
+         CONTEÚDO PRINCIPAL (TELAS / VIEWS)
+         ======================================================== -->
+    <main class="main-content">
+
+        <!-- ====================================================
+             VIEW 1: DASHBOARD FINANCEIRO
+             ==================================================== -->
+        <section id="view-dashboard" class="page-view active">
+            <div class="page-header">
+                <div>
+                    <h2 class="page-title">Dashboard Financeiro</h2>
+                    <p class="page-desc">Métricas de faturamento, orçamentos e visão consolidada da operação.</p>
+                </div>
+                <button class="btn-refresh-metrics" onclick="Dashboard.loadMetrics()">
+                    <svg class="spin-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="23 4 23 10 17 10"></polyline>
+                        <polyline points="1 20 1 14 7 14"></polyline>
+                        <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
+                    </svg>
+                    Atualizar Métricas
+                </button>
+            </div>
+
+            <!-- Grid de Indicadores Principais (KPIs) com Glow Noturno -->
+            <div class="kpi-grid">
+                <!-- Faturamento Total -->
+                <div class="kpi-card highlight">
+                    <div class="kpi-header">
+                        <span class="kpi-title">Faturamento total</span>
+                    </div>
+                    <div class="kpi-value" id="kpi-rev-total">R$ 0,00</div>
+                    <div class="kpi-meta" id="kpi-orders-total">Total de 0 pedido(s)</div>
+                </div>
+
+                <!-- Faturamento do Mês -->
+                <div class="kpi-card">
+                    <div class="kpi-header">
+                        <span class="kpi-title">Faturamento do mês</span>
+                    </div>
+                    <div class="kpi-value" id="kpi-rev-month">R$ 0,00</div>
+                    <div class="kpi-meta" id="kpi-orders-month">0 pedido(s) nesse mês</div>
+                </div>
+
+                <!-- Faturamento da Semana -->
+                <div class="kpi-card">
+                    <div class="kpi-header">
+                        <span class="kpi-title">Faturamento da semana</span>
+                    </div>
+                    <div class="kpi-value" id="kpi-rev-week">R$ 0,00</div>
+                    <div class="kpi-meta" id="kpi-orders-week">0 pedido(s) nos últimos 7 dias</div>
+                </div>
+
+                <!-- Total a Receber (Pendente) -->
+                <div class="kpi-card pending">
+                    <div class="kpi-header">
+                        <span class="kpi-title">A receber (Pendente)</span>
+                    </div>
+                    <div class="kpi-value" id="kpi-pending-total">R$ 0,00</div>
+                    <div class="kpi-meta" id="kpi-pending-count">0 pedido(s) aguardando pagamento</div>
+                </div>
+            </div>
+
+            <!-- Gráfico de Faturamento e Status da Linha -->
+            <div class="dashboard-grid">
+                <!-- Gráfico de Barras dos Últimos 7 dias -->
+                <div class="content-card">
+                    <div class="card-title-bar">
+                        <h3 class="card-heading"><span class="sparkle-icon">✦</span> Tendência de Faturamento (Últimos 7 Dias)</h3>
+                        <span class="card-subtitle-badge">Valores pagos</span>
+                    </div>
+                    <div class="chart-container">
+                        <div class="bar-chart-flex" id="dashboard-bar-chart">
+                            <!-- Inserido dinamicamente via dashboard.js -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Distribuição do Pipeline de Produção -->
+                <div class="content-card">
+                    <div class="card-title-bar">
+                        <h3 class="card-heading"><span class="sparkle-icon">✦</span> Linha de Produção</h3>
+                        <span class="card-subtitle-badge">Status atual</span>
+                    </div>
+                    <div class="pipeline-bars" id="pipeline-progress-container">
+                        <!-- Inserido dinamicamente via dashboard.js -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Estatísticas dos Tênis & Pedidos Recentes -->
+            <div class="dashboard-grid">
+                <!-- Distribuição por Cor & Marcas -->
+                <div class="content-card">
+                    <div class="card-title-bar">
+                        <h3 class="card-heading">
+                            <span class="sparkle-icon">✦</span> Estatísticas de Tênis
+                        </h3>
+                    </div>
+                    <div class="sneaker-stats-grid">
+                        <div class="stat-subcol">
+                            <h4 class="subcol-title">Cores dos Pares</h4>
+                            <div id="color-distribution-container"></div>
+                        </div>
+                        <div class="stat-subcol">
+                            <h4 class="subcol-title">Top Marcas Lavadas</h4>
+                            <div id="top-brands-container"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Últimos Pedidos -->
+                <div class="content-card">
+                    <div class="card-title-bar">
+                        <h3 class="card-heading">
+                            <span class="sparkle-icon">✦</span> Pedidos Recentes
+                        </h3>
+                        <a href="#orders" onclick="document.querySelector('[data-target=\'view-orders\']').click()" class="link-view-all">Ver todos →</a>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Cliente</th>
+                                    <th>Pares</th>
+                                    <th>Valor</th>
+                                    <th>Pagto</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="recent-orders-tbody">
+                                <!-- Preenchido dinamicamente -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ====================================================
+             VIEW 2: LINHA DE PRODUÇÃO & PEDIDOS
+             ==================================================== -->
+        <section id="view-orders" class="page-view">
+            <div class="page-header">
+                <div>
+                    <h2 class="page-title">Linha de Produção</h2>
+                    <p class="page-desc">Acompanhamento do ciclo de vida os pedidos.</p>
+                </div>
+                <div class="toolbar-actions">
+                    <div class="search-box-pill">
+                        <svg class="search-icon-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                        <input type="text" id="order-search-input" class="search-input-pill" placeholder="Buscar pedido, cliente ou ..">
+                    </div>
+
+                    <select id="order-status-filter" class="filter-select-pill">
+                        <option value="">Todos os Status</option>
+                        <option value="Aguardando pagamento">Aguardando pagamento</option>
+                        <option value="Pagamento realizado">Pagamento realizado</option>
+                        <option value="Lavando">Lavando</option>
+                        <option value="Secando">Secando</option>
+                        <option value="Pronto para entrega">Pronto para entrega</option>
+                        <option value="Entregue">Entregue</option>
+                    </select>
+
+                    <select id="order-payment-filter" class="filter-select-pill">
+                        <option value="">Todo Pagamento</option>
+                        <option value="Pendente">Pendente</option>
+                        <option value="Pago">Pago</option>
+                    </select>
+
+                    <div class="view-toggle-pill-group">
+                        <button id="view-kanban-btn" class="view-toggle-pill active">
+                            Kanban
+                        </button>
+                        <button id="view-table-btn" class="view-toggle-pill">
+                            Tabela
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Visualização 1: Kanban Board com as 6 Colunas da Linha de Produção -->
+            <div id="kanban-board-view" class="kanban-board">
+                <!-- Colunas geradas pelo orders.js -->
+            </div>
+
+            <!-- Visualização 2: Tabela de Pedidos -->
+            <div id="table-orders-view" class="table-responsive" style="display: none;">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Cliente</th>
+                            <th>Pares & Tênis</th>
+                            <th>Valor Total</th>
+                            <th>Pagamento</th>
+                            <th>Status Linha</th>
+                            <th>Data Entrada</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody id="orders-table-tbody">
+                        <!-- Preenchido dinamicamente -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- ====================================================
+             VIEW 3: CLIENTES
+             ==================================================== -->
+        <section id="view-clients" class="page-view">
+            <div class="page-header">
+                <div>
+                    <h2 class="page-title">Gestão de Clientes</h2>
+                    <p class="page-desc">Cadastro, histórico de pedidos e contato via WhatsApp com os clientes.</p>
+                </div>
+                <div class="toolbar-actions">
+                    <div class="search-box-pill">
+                        <svg class="search-icon-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                        <input type="text" id="client-search-input" class="search-input-pill" placeholder="Buscar por nome ou WhatsApp...">
+                    </div>
+                    <button class="btn-primary-pill" onclick="Clients.openNewModal()">
+                        + Novo Cliente
+                    </button>
+                </div>
+            </div>
+
+            <div class="table-responsive">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nome do Cliente</th>
+                            <th>WhatsApp</th>
+                            <th>Total Pedidos</th>
+                            <th>Faturamento Gerado</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody id="clients-table-tbody">
+                        <!-- Inserido dinamicamente via clients.js -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- ====================================================
+             VIEW 4: CALENDÁRIO & HISTÓRICO
+             ==================================================== -->
+        <section id="view-calendar" class="page-view">
+            <div class="page-header">
+                <div>
+                    <h2 class="page-title">Calendário &amp; Histórico de Produção</h2>
+                    <p class="page-desc">Visualização diária de serviços iniciados, finalizados e entregues, com histórico de auditoria.</p>
+                </div>
+            </div>
+
+            <div class="calendar-layout">
+                <!-- Grade Mensal do Calendário -->
+                <div class="calendar-card">
+                    <div class="calendar-header-nav">
+                        <div class="calendar-month-title" id="calendar-month-year-title">Mês Ano</div>
+                        <div style="display: flex; gap: 0.5rem;">
+                            <button class="btn-cal-nav" id="cal-prev-month">◀ Mês Anterior</button>
+                            <button class="btn-cal-nav" id="cal-today-btn">Hoje</button>
+                            <button class="btn-cal-nav" id="cal-next-month">Próximo Mês ▶</button>
+                        </div>
+                    </div>
+
+                    <div class="calendar-grid" id="calendar-days-grid">
+                        <!-- Inserido dinamicamente via calendar.js -->
+                    </div>
+                </div>
+
+                <!-- Painel Lateral: Movimentações do Dia Selecionado -->
+                <div class="day-details-panel">
+                    <div class="day-details-header">
+                        <h3 style="font-size: 1.1rem; color: var(--text-pure-white);" id="selected-day-title">Serviços do Dia</h3>
+                        <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.2rem;">Clique em qualquer dia do calendário para ver suas atividades.</p>
+                    </div>
+                    <div class="day-details-list" id="day-orders-list">
+                        <!-- Inserido dinamicamente via calendar.js -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ========================================================
+         MODAIS DO SISTEMA
+         ======================================================== -->
+
+    <!-- 1. Modal: Novo Pedido (Linha de Produção & Promoção) -->
+    <div class="modal-overlay" id="order-modal">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-header">
+                <div class="modal-title">Novo Pedido de Limpeza</div>
+                <button class="modal-close-btn" onclick="Orders.closeOrderModal()">✕</button>
+            </div>
+            <form id="order-modal-form" novalidate onsubmit="event.preventDefault(); Orders.saveOrder(); return false;" style="display: contents;">
+                <div class="modal-body">
+                    <!-- Opções de Seleção / Cadastro de Cliente -->
+                    <div class="form-group client-id-box">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.6rem;">
+                            <label class="form-label" style="margin-bottom: 0;">Identificação do Cliente *</label>
+                            <div class="toggle-pill-small">
+                                <button type="button" id="tab-client-existing" class="view-toggle-btn active" onclick="Orders.toggleClientMode('existing')">
+                                    Cliente Cadastrado
+                                </button>
+                                <button type="button" id="tab-client-new" class="view-toggle-btn" onclick="Orders.toggleClientMode('new')">
+                                    + Novo Cliente
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Opção A: Selecionar Cliente Existente -->
+                        <div id="client-select-existing-group">
+                            <select id="order-client-select" class="form-select">
+                                <!-- Opções preenchidas dinamicamente -->
+                            </select>
+                        </div>
+
+                        <!-- Opção B: Cadastrar Novo Cliente Diretamente no Pedido -->
+                        <div id="client-new-quick-group" style="display: none;">
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem;">
+                                <div>
+                                    <label class="form-label-compact">Nome Completo *</label>
+                                    <input type="text" id="order-new-client-name" class="form-input" placeholder="Ex: Nome Sobrenome">
+                                </div>
+                                <div>
+                                    <label class="form-label-compact">WhatsApp com DDD *</label>
+                                    <input type="text" id="order-new-client-phone" class="form-input" placeholder="(00) 00000-0000">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tabela e Banner Promocional de Precificação -->
+                    <div class="pricing-promo-banner" id="pricing-promo-summary">
+                        <!-- Atualizado dinamicamente pelo orders.js -->
+                    </div>
+
+                    <!-- Produtos / Serviços Dinâmicos -->
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.6rem;">
+                        <label class="form-label" style="margin-bottom: 0;">Produtos / Serviços *</label>
+                        <div style="display: flex; gap: 8px;">
+                            <button type="button" class="btn-secondary" style="font-size: 0.8rem; padding: 0.35rem 0.75rem;" onclick="Orders.openProductModal()">
+                                ⚙️ Gerenciar Serviços
+                            </button>
+                            <button type="button" class="btn-secondary" style="font-size: 0.8rem; padding: 0.35rem 0.75rem;" onclick="Orders.addSneakerItemRow()">
+                                + Adicionar Produto
+                            </button>
+                        </div>
+                    </div>
+
+                    <div id="sneaker-items-container">
+                        <!-- Linhas de tênis dinâmicas inseridas pelo orders.js -->
+                    </div>
+
+                    <!-- Pagamento e Notas -->
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1rem;">
+                        <div class="form-group">
+                            <label class="form-label">Forma de Pagamento</label>
+                            <select id="order-payment-method" class="form-select">
+                                <option value="PIX">PIX (Chave 67998570731)</option>
+                                <option value="Dinheiro físico">Dinheiro físico</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Status do Pagamento</label>
+                            <select id="order-payment-status" class="form-select">
+                                <option value="Pendente">Pendente (pagar depois)</option>
+                                <option value="Pago">Pago (pagamento já efetuado)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Observações do Pedido (opcional)</label>
+                        <input type="text" id="order-notes-input" class="form-input" placeholder="Ex: Cliente tem pressa, cuidado especial com cadarço">
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn-secondary" onclick="Orders.closeOrderModal()">Cancelar</button>
+                    <button type="button" id="btn-submit-order" class="btn-primary" onclick="Orders.saveOrder()">Criar Pedido</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- 2. Modal: Fotos Antes & Depois -->
+    <div class="modal-overlay" id="photo-modal">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-header">
+                <div class="modal-title" id="photo-modal-title"><span>📷</span> Fotos Antes / Depois</div>
+                <button class="modal-close-btn" onclick="Orders.closePhotoModal()">✕</button>
+            </div>
+            <div class="modal-body" id="photos-items-container">
+                <!-- Preenchido dinamicamente com pares e fotos -->
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn-secondary" onclick="Orders.closePhotoModal()">Fechar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3. Modal: Notificação WhatsApp -->
+    <div class="modal-overlay" id="whatsapp-modal">
+        <div class="modal-dialog">
+            <div class="modal-header">
+                <div class="modal-title">Notificação WhatsApp</div>
+                <button class="modal-close-btn" onclick="Orders.closeWhatsAppModal()">✕</button>
+            </div>
+            <div class="modal-body">
+                <p style="font-size: 0.88rem; color: var(--text-secondary); margin-bottom: 0.75rem;">
+                    Destinatário: <strong id="whatsapp-client-info" style="color: var(--text-pure-white);">-</strong>
+                </p>
+
+                <!-- Pré-visualização do chat estilo WhatsApp -->
+                <div class="whatsapp-chat-box">
+                    <div class="whatsapp-bubble" id="whatsapp-message-preview">
+                        <!-- Mensagem exata inserida dinamicamente -->
+                    </div>
+                    <div class="pix-key-pill">
+                        <span>Chave PIX: <strong id="whatsapp-pix-key-val">67998570731</strong> (João Ricardo Albuquerque Novaes)</span>
+                        <button type="button" class="btn-secondary" style="padding: 0.25rem 0.6rem; font-size: 0.75rem;" onclick="Orders.copyPixKey()">Copiar Chave</button>
+                    </div>
+                </div>
+
+                <div style="display: flex; gap: 0.5rem; justify-content: flex-end;">
+                    <button type="button" class="btn-secondary" onclick="Orders.copyWhatsAppMessage()">Copiar Mensagem</button>
+                    <button type="button" class="btn-primary" id="btn-send-whatsapp-now" style="background: #1caa50; color: #FFFFFF; display: flex; align-items: center; gap: 0.4rem;">
+                        Abrir WhatsApp
+                    </button>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn-secondary" onclick="Orders.closeWhatsAppModal()">Fechar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 4. Modal: Auditoria & Edição de Histórico -->
+    <div class="modal-overlay" id="audit-modal">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-header">
+                <div class="modal-title" id="audit-modal-title"><span>⚙️</span> Auditoria &amp; Correção de Pedido</div>
+                <button class="modal-close-btn" onclick="Orders.closeAuditModal()">✕</button>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" id="audit-order-id">
+                
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
+                    <div class="form-group">
+                        <label class="form-label">Status da Linha de Produção</label>
+                        <select id="audit-status-select" class="form-select">
+                            <option value="Aguardando pagamento">Aguardando pagamento</option>
+                            <option value="Pagamento realizado">Pagamento realizado</option>
+                            <option value="Lavando">Lavando</option>
+                            <option value="Secando">Secando</option>
+                            <option value="Pronto para entrega">Pronto para entrega</option>
+                            <option value="Entregue">Entregue</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Status do Pagamento</label>
+                        <select id="audit-payment-status" class="form-select">
+                            <option value="Pendente">Pendente</option>
+                            <option value="Pago">Pago</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
+                    <div class="form-group">
+                        <label class="form-label">Data de Entrada</label>
+                        <input type="datetime-local" id="audit-created-at" class="form-input">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Data Pronto</label>
+                        <input type="datetime-local" id="audit-completion-date" class="form-input">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Data de Entrega</label>
+                        <input type="datetime-local" id="audit-delivered-date" class="form-input">
+                    </div>
+                </div>
+
+                <div style="display: grid; grid-template-columns: 1fr 2fr; gap: 1rem; margin-bottom: 1rem;">
+                    <div class="form-group">
+                        <label class="form-label">Forma de Pagamento</label>
+                        <select id="audit-payment-method" class="form-select">
+                            <option value="PIX">PIX</option>
+                            <option value="Dinheiro físico">Dinheiro físico</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Motivo da Modificação (Auditoria) *</label>
+                        <input type="text" id="audit-reason" class="form-input" placeholder="Ex: Correção de data informada incorretamente">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Observações</label>
+                    <textarea id="audit-notes" class="form-textarea" rows="2"></textarea>
+                </div>
+
+                <h4 style="color: var(--text-pure-white); margin: 1.25rem 0 0.5rem 0; font-size: 0.95rem; border-top: 1px solid var(--border-subtle); padding-top: 0.75rem;">
+                    Linha do Tempo de Auditoria
+                </h4>
+                <div id="audit-history-timeline" style="max-height: 180px; overflow-y: auto;">
+                    <!-- Preenchido dinamicamente -->
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn-secondary" onclick="Orders.closeAuditModal()">Cancelar</button>
+                <button type="button" class="btn-primary" onclick="Orders.saveAuditForm()">Salvar Alterações</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 5. Modal: Exigência de Pagamento para Entrega -->
+    <div class="modal-overlay" id="delivery-payment-required-modal">
+        <div class="modal-dialog">
+            <div class="modal-header">
+                <div class="modal-title"><span>⚠️</span> Confirmação de Pagamento para Entrega</div>
+                <button class="modal-close-btn" onclick="Orders.closeDeliveryPaymentModal()">✕</button>
+            </div>
+            <div class="modal-body">
+                <div style="text-align: center; margin-bottom: 1rem;">
+                    <span style="font-size: 2.5rem;">🛑</span>
+                    <h3 style="color: var(--text-pure-white); margin-top: 0.5rem;">Pagamento Pendente!</h3>
+                    <p style="color: var(--text-secondary); margin-top: 0.5rem; font-size: 0.92rem;">
+                        Regra do Sistema: <strong>A entrega do tênis está estritamente condicionada ao status "Pago".</strong>
+                    </p>
+                    <p style="color: var(--blue-light); font-size: 1.2rem; font-weight: 800; margin-top: 0.5rem;">
+                        Valor Total: <span id="delivery-pending-amount-txt">R$ 0,00</span>
+                    </p>
+                </div>
+                <p style="font-size: 0.88rem; text-align: center; color: var(--text-muted); margin-bottom: 1.25rem;">
+                    O cliente acabou de efetuar o pagamento? Selecione como o valor foi recebido para liberar a entrega imediatamente:
+                </p>
+                <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+                    <button type="button" class="btn-primary" style="background: #059669; color: #FFFFFF;" onclick="Orders.confirmDeliveryWithPayment('PIX')">
+                        ✅ Recebido via PIX ➔ Confirmar & Entregar
+                    </button>
+                    <button type="button" class="btn-primary" style="background: var(--blue-marine); color: #FFFFFF;" onclick="Orders.confirmDeliveryWithPayment('Dinheiro físico')">
+                        💵 Recebido em Dinheiro Físico ➔ Confirmar & Entregar
+                    </button>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn-secondary" onclick="Orders.closeDeliveryPaymentModal()">Cancelar / Manter Pendente</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 6. Modal: Cadastro / Edição de Cliente -->
+    <div class="modal-overlay" id="client-modal">
+        <div class="modal-dialog">
+            <div class="modal-header">
+                <div class="modal-title" id="client-modal-title"><span>👥</span> Cliente</div>
+                <button class="modal-close-btn" onclick="Clients.closeModal()">✕</button>
+            </div>
+            <form id="client-modal-form">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label class="form-label">Nome Completo *</label>
+                        <input type="text" id="client-name-input" class="form-input" placeholder="Ex: Nome Sobrenome" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Número de Telefone (WhatsApp) *</label>
+                        <input type="text" id="client-phone-input" class="form-input" placeholder="(00) 00000-0000" required>
+                        <small style="color: var(--text-muted); font-size: 0.76rem;">Obrigatório conter DDD e número com WhatsApp.</small>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn-secondary" onclick="Clients.closeModal()">Cancelar</button>
+                    <button type="submit" class="btn-primary">Salvar Cliente</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- 7. Modal: Detalhes do Perfil do Cliente -->
+    <div class="modal-overlay" id="client-details-modal">
+        <div class="modal-dialog">
+            <div class="modal-header">
+                <div class="modal-title" id="client-details-title"><span>👤</span> Histórico do Cliente</div>
+                <button class="modal-close-btn" onclick="Clients.closeDetailsModal()">✕</button>
+            </div>
+            <div class="modal-body" id="client-details-body">
+                <!-- Conteúdo gerado dinamicamente -->
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn-secondary" onclick="Clients.closeDetailsModal()">Fechar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 8. Modal: Gestão de Produtos / Serviços & Regras Promocionais -->
+    <div class="modal-overlay" id="product-modal">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-header">
+                <div class="modal-title" style="color: #eff6ff;"><span>🏷️</span> Gestão de Serviços & Promoções</div>
+                <button class="modal-close-btn" onclick="Orders.closeProductModal()">✕</button>
+            </div>
+            <div class="modal-body" style="max-height: 80vh; overflow-y: scroll;">
+                <p style="color: var(--text-secondary); font-size: 0.85rem; margin-bottom: 0.5rem;">
+                    Cadastre novos tipos de limpezas e serviços, definindo valor base e regras de promoção por quantidade (ex: ao pedir X unidades, cada uma sai por Y).
+                </p>
+
+                <!-- Tabela de Produtos Cadastrados -->
+                <div class="table-responsive" style="margin-bottom: 1.5rem;">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Serviço / Produto</th>
+                                <th>Valor Base</th>
+                                <th>Regra de Promoção</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody id="products-table-body">
+                            <!-- Inserido dinamicamente via orders.js -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Formulário de Criação / Edição -->
+                <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: var(--radius-md); padding: 1.2rem;">
+                    <h4 id="product-form-title" style="color: #eff6ff; font-size: 1rem; margin-bottom: 1rem; font-weight: 600;">Cadastrar Novo Produto / Serviço</h4>
+                    <form onsubmit="event.preventDefault(); Orders.saveProductForm();">
+                        <input type="hidden" id="product-form-id">
+                        <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 1rem; margin-bottom: 0.8rem;">
+                            <div class="form-group" style="margin-bottom: 0;">
+                                <label class="form-label">Nome do Serviço / Produto *</label>
+                                <input type="text" id="product-form-name" class="form-input" placeholder="Ex: Limpeza Completa, Camurça Especial, etc." required>
+                            </div>
+                            <div class="form-group" style="margin-bottom: 0;">
+                                <label class="form-label">Valor Base (R$) *</label>
+                                <input type="number" step="0.50" id="product-form-price" class="form-input" placeholder="35.00" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group" style="margin-bottom: 0.8rem;">
+                            <label class="form-label">Descrição (opcional)</label>
+                            <input type="text" id="product-form-desc" class="form-input" placeholder="Ex: Higienização profunda do tecido, entressola e cadarços">
+                        </div>
+
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; background: rgba(0, 102, 255, 0.06); padding: 0.8rem; border-radius: var(--radius-sm); border: 1px solid rgba(0, 102, 255, 0.15);">
+                            <div class="form-group" style="margin-bottom: 0;">
+                                <label class="form-label" style="font-size: 0.8rem;">Promoção: a partir de quantas unidades?</label>
+                                <input type="number" id="product-form-promo-min" class="form-input" placeholder="Ex: 2" value="2">
+                            </div>
+                            <div class="form-group" style="margin-bottom: 0;">
+                                <label class="form-label" style="font-size: 0.8rem;">Valor por unidade na promoção (R$)</label>
+                                <input type="number" step="0.50" id="product-form-promo-price" class="form-input" placeholder="Ex: 30.00">
+                            </div>
+                        </div>
+
+                        <div style="display: flex; justify-content: flex-end; gap: 0.6rem;">
+                            <button type="button" class="btn-secondary" onclick="Orders.openProductModal()">Limpar / Novo</button>
+                            <button type="submit" class="btn-primary">Salvar Serviço</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn-secondary" onclick="Orders.closeProductModal()">Fechar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========================================================
+         ECRÃ DE CARREGAMENTO (COLD START RENDER)
+         ======================================================== -->
+    <div id="loading-overlay" class="loading-oculto">
+        <div class="spinner"></div>
+        <p style="margin-top: 15px; font-weight: 500;">A processar na nuvem... por favor aguarde.</p>
+    </div>
+
+    <!-- ========================================================
+         SCRIPTS
+         ======================================================== -->
+    <script src="js/api.js"></script>
+    <script src="js/dashboard.js"></script>
+    <script src="js/clients.js"></script>
+    <script src="js/orders.js"></script>
+    <script src="js/calendar.js"></script>
+
+    <script>
+        // Inicialização Global & Gerenciamento de Tema Dark / Light
+        document.addEventListener('DOMContentLoaded', async () => {
+            // Gerenciador de Tema
+            const themeToggleBtn = document.getElementById('theme-toggle-btn');
+            const savedTheme = localStorage.getItem('sneakerclean_theme') || 'dark';
+            
+            function applyTheme(theme) {
+                document.documentElement.setAttribute('data-theme', theme);
+                localStorage.setItem('sneakerclean_theme', theme);
+                if (themeToggleBtn) {
+                    themeToggleBtn.setAttribute('title', theme === 'dark' ? 'Alternar para Modo Claro' : 'Alternar para Modo Escuro');
+                    themeToggleBtn.innerHTML = theme === 'dark' 
+                        ? `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="5"></circle>
+                            <line x1="12" y1="1" x2="12" y2="3"></line>
+                            <line x1="12" y1="21" x2="12" y2="23"></line>
+                            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                            <line x1="1" y1="12" x2="3" y2="12"></line>
+                            <line x1="21" y1="12" x2="23" y2="12"></line>
+                            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                          </svg>`
+                        : `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                          </svg>`;
+                }
+            }
+
+            applyTheme(savedTheme);
+
+            if (themeToggleBtn) {
+                themeToggleBtn.addEventListener('click', () => {
+                    const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
+                    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+                    applyTheme(newTheme);
+                });
+            }
+
+            // Gerenciamento de Abas de Navegação (Tabs)
+            const tabs = document.querySelectorAll('.nav-tab');
+            const views = document.querySelectorAll('.page-view');
+
+            tabs.forEach(tab => {
+                tab.addEventListener('click', async () => {
+                    tabs.forEach(t => t.classList.remove('active'));
+                    views.forEach(v => v.classList.remove('active'));
+
+                    tab.classList.add('active');
+                    const targetViewId = tab.getAttribute('data-target');
+                    const targetView = document.getElementById(targetViewId);
+                    if (targetView) targetView.classList.add('active');
+
+                    // Carregar dados conforme a tela aberta
+                    if (targetViewId === 'view-dashboard') {
+                        if (window.Dashboard) await Dashboard.loadMetrics();
+                    } else if (targetViewId === 'view-orders') {
+                        if (window.Orders) await Orders.loadOrders();
+                    } else if (targetViewId === 'view-clients') {
+                        if (window.Clients) await Clients.loadClients();
+                    } else if (targetViewId === 'view-calendar') {
+                        if (window.Calendar) await Calendar.loadEvents();
+                    }
+                });
+            });
+
+            // Efeito de rolagem na Navbar (Deslizar para cima ao rolar para baixo)
+            let lastScrollY = window.scrollY;
+            const appHeader = document.querySelector('.app-header');
+
+            window.addEventListener('scroll', () => {
+                const currentScrollY = window.scrollY;
+                if (currentScrollY > 50 && currentScrollY > lastScrollY) {
+                    // Rolando para baixo -> esconde barra deslizando para cima
+                    appHeader?.classList.add('nav-hidden');
+                } else {
+                    // Rolando para cima -> exibe barra
+                    appHeader?.classList.remove('nav-hidden');
+                }
+                lastScrollY = currentScrollY <= 0 ? 0 : currentScrollY;
+            }, { passive: true });
+
+            // Inicializar cada módulo de forma independente
+            if (window.Clients) {
+                try { await Clients.init(); } catch (e) { console.warn("Clients init:", e); }
+            }
+            if (window.Orders) {
+                try { await Orders.init(); } catch (e) { console.warn("Orders init:", e); }
+            }
+            if (window.Dashboard) {
+                try { await Dashboard.init(); } catch (e) { console.warn("Dashboard init:", e); }
+            }
+            if (window.Calendar) {
+                try { await Calendar.init(); } catch (e) { console.warn("Calendar init:", e); }
+            }
+        });
+    </script>
+</body>
+</html>
